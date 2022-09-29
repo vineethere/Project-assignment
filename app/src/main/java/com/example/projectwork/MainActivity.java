@@ -10,6 +10,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.speech.RecognizerIntent;
 import android.speech.tts.TextToSpeech;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -45,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-       //-----------------------------------------------
+        //-----------------------------------------------
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
                         displayquestion();
                     }
                 };
-                ans=x*y;
+
                 Runnable runnable2 = new Runnable() {
                     @Override
                     public void run() {
@@ -65,10 +66,12 @@ public class MainActivity extends AppCompatActivity {
                         answerinput();
                     }
                 };
+
                 Runnable runnable3 = new Runnable() {
                     @Override
                     public void run() {
 //                     posses the result and reply correct or incorrect
+                        ans=x*y;
                         possesresult(ans);
                     }
                 };
@@ -79,44 +82,13 @@ public class MainActivity extends AppCompatActivity {
             }
 
             private void possesresult(int read) {
-//                if(read==1 && (userans.equalsIgnoreCase("one") || userans=="1")){
-//                    t2sp.speak("Correct answer",TextToSpeech.QUEUE_FLUSH,null);
-//                }
-//
-//                else if(read==2 && (userans.equalsIgnoreCase("two") || userans=="2")){
-//                    t2sp.speak("Correct answer",TextToSpeech.QUEUE_FLUSH,null);
-//                }
-//                else if(read==3 && (userans.equalsIgnoreCase("three") || userans=="3")){
-//                    t2sp.speak("Correct answer",TextToSpeech.QUEUE_FLUSH,null);
-//                }
-//                else if(read==4 && (userans.equalsIgnoreCase("four") || userans=="4")){
-//                    t2sp.speak("Correct answer",TextToSpeech.QUEUE_FLUSH,null);
-//                }
-//                else if(read==5 && (userans.equalsIgnoreCase("five") || userans=="5")){
-//                    t2sp.speak("Correct answer",TextToSpeech.QUEUE_FLUSH,null);
-//                }
-//                else if(read==6 && (userans.equalsIgnoreCase("six") || userans=="6")){
-//                    t2sp.speak("Correct answer",TextToSpeech.QUEUE_FLUSH,null);
-//                }
-//                else if(read==7 && (userans.equalsIgnoreCase("seven") || userans=="7")){
-//                    t2sp.speak("Correct answer",TextToSpeech.QUEUE_FLUSH,null);
-//                }
-//                else if(read==8 && (userans.equalsIgnoreCase("eight") || userans=="8")){
-//                    t2sp.speak("Correct answer",TextToSpeech.QUEUE_FLUSH,null);
-//                }
-//                else if(read==9 && (userans.equalsIgnoreCase("nine") || userans=="9")){
-//                    t2sp.speak("Correct answer",TextToSpeech.QUEUE_FLUSH,null);
-//                }
-//                else if(read==10 && (userans.equalsIgnoreCase("ten") || userans=="10")){
-//                    t2sp.speak("Correct answer",TextToSpeech.QUEUE_FLUSH,null);
-//                }
-//                else{
-//                    t2sp.speak("Incorrect",TextToSpeech.QUEUE_FLUSH,null);
-//                }
-                if(read==Integer.valueOf(userans))
-                    t2sp.speak("Incorrect",TextToSpeech.QUEUE_FLUSH,null);
+                Log.d("thisvalue",read+Integer.valueOf(userans).toString()+read);
+
+                if(read==Integer.valueOf(userans)) {
+                    t2sp.speak("Correct", TextToSpeech.QUEUE_FLUSH, null);
+                }
                 else
-                    t2sp.speak("correct",TextToSpeech.QUEUE_FLUSH,null);
+                    t2sp.speak("Incorrect",TextToSpeech.QUEUE_FLUSH,null);
             }
 
             private void answerinput() {
